@@ -55,8 +55,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          webp/512px/*.webp
-          webp/100px/*.webp
+          webp/*
         tag_name: v${{ github.run_id }}
         release_name: Release v${{ github.run_id }}
         body: |
