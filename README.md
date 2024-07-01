@@ -3,7 +3,8 @@
 # Контакты
 - https://t.me/t0ky0_t0ky0
 - https://t.me/CryptosCossaks
-
+- Stickers https://t.me/addstickers/Lum_City
+- Emoji https://t.me/addemoji/Lumcity
 
 ## Структура репозитория
 
