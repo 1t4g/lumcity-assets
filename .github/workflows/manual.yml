@@ -55,7 +55,7 @@ jobs:
       with:
         files: |
           webp/*.webp
-        tag_name: ${{ github.run_id }}
-        release_name: Release ${{ github.run_id }}
+        tag_name: v${{ github.run_id }}
+        release_name: Release v${{ github.run_id }}
         body: |
           Release generated from job ID: ${{ github.run_id }}
