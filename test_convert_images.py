@@ -2,6 +2,7 @@ import pytest
 import os
 import shutil
 from PIL import Image
+from convert_images import convert_images  # Замените на ваш реальный путь и имя модуля
 
 @pytest.fixture
 def setup_test_environment():
