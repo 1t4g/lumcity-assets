@@ -9,6 +9,10 @@ on:
         required: true
         type: string
 
+  push:
+    paths:
+      - 'png/**'
+
 jobs:
   convert-images:
     runs-on: ubuntu-latest
