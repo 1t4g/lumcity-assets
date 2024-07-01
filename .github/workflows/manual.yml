@@ -42,11 +42,20 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
-        
         git commit -m "Add converted images"
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Package 512px images
+      run: |
+        tar -cvf 512px.tar -C webp/512px .
+      shell: bash
+
+    - name: Package 100px images
+      run: |
+        tar -cvf 100px.tar -C webp/100px .
+      shell: bash
 
     - name: Create Release
       id: create_release
@@ -55,12 +64,17 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          webp/100px/*.webp
-          webp/512px/*.webp
+          512px.tar
+          100px.tar
         tag_name: v${{ github.run_id }}
         release_name: Release v${{ github.run_id }}
         body: |
           Release generated from job ID: ${{ github.run_id }}
-        tarball_dir: webp
-        tarball_name: images-${{ github.run_id }}.tar
-    
+
+    - name: Delete webp directory
+      run: |
+        git rm -r webp
+        git commit -m "Remove webp directory"
+        git push origin main
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
