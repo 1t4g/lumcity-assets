@@ -1,4 +1,4 @@
-name: Image Conversion
+name: ImageConv
 
 on:
   push:
