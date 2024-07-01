@@ -1,0 +1,10 @@
+name: base
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - Pillow>=9.1.0
+      - pytest
+  - python=3.8
