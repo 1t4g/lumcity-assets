@@ -13,13 +13,13 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
-    - name: Set up Python
-      uses: actions/setup-python@v2
+    - name: Set up conda
+      uses: conda-incubator/setup-miniconda@v2
       with:
-        python-version: '3.x'
-
-    - name: Install dependencies
-      run: pip install -r requirements.txt
+        auto-update-conda: true
+        python-version: '3.8'
+        environment-file: environment.yml
+        activate-environment: base
 
     - name: Convert images
       run: python convert_images.py
