@@ -55,8 +55,12 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         files: |
-          webp/.*/*.webp         
+          webp/100x/*.webp
+          webp/512x/*.webp
         tag_name: v${{ github.run_id }}
         release_name: Release v${{ github.run_id }}
         body: |
           Release generated from job ID: ${{ github.run_id }}
+        tarball_dir: webp
+        tarball_name: images-${{ github.run_id }}.tar
+    
