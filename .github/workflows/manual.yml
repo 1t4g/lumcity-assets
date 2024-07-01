@@ -46,3 +46,16 @@ jobs:
         git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Create Release
+      id: create_release
+      uses: softprops/action-gh-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        files: |
+          webp/*.webp
+        tag_name: ${{ github.run_id }}
+        release_name: Release ${{ github.run_id }}
+        body: |
+          Release generated from job ID: ${{ github.run_id }}
