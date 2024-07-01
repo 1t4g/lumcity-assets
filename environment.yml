@@ -7,5 +7,4 @@ dependencies:
   - pip:
       - Pillow
       - pytest
-      - shutil
 
