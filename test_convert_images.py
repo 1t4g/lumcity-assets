@@ -2,7 +2,7 @@ import pytest
 import os
 import shutil
 from PIL import Image
-from your_module_with_convert_images import convert_images
+from convert_images import convert_images
 
 @pytest.fixture
 def setup_test_environment():
