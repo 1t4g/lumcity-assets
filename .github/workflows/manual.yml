@@ -41,7 +41,8 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add .
+        git add setup-miniconda-patched-environment.yml
+        git add webp/
         git commit -m "Add converted images"
         git push
       env:
