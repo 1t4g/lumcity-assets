@@ -41,7 +41,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add webp/
+        git add .
         git commit -m "Add converted images"
         git push
       env:
