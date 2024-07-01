@@ -19,13 +19,20 @@ def setup_test_environment():
     yield png_folder, webp_folder
 
     # Удалите временные файлы и папки
-    os.remove(os.path.join(png_folder, 'test.png'))
-    os.remove(os.path.join(webp_folder, '100px/test100px.webp'))
-    os.remove(os.path.join(webp_folder, '512px/test512px.webp'))
-    os.rmdir(os.path.join(webp_folder, '100px'))
-    os.rmdir(os.path.join(webp_folder, '512px'))
-    os.rmdir(png_folder)
-    os.rmdir(webp_folder)
+    if os.path.exists(os.path.join(png_folder, 'test.png')):
+        os.remove(os.path.join(png_folder, 'test.png'))
+    if os.path.exists(os.path.join(webp_folder, '100px/test100px.webp')):
+        os.remove(os.path.join(webp_folder, '100px/test100px.webp'))
+    if os.path.exists(os.path.join(webp_folder, '512px/test512px.webp')):
+        os.remove(os.path.join(webp_folder, '512px/test512px.webp'))
+    if os.path.exists(os.path.join(webp_folder, '100px')):
+        os.rmdir(os.path.join(webp_folder, '100px'))
+    if os.path.exists(os.path.join(webp_folder, '512px')):
+        os.rmdir(os.path.join(webp_folder, '512px'))
+    if os.path.exists(png_folder):
+        os.rmdir(png_folder)
+    if os.path.exists(webp_folder):
+        os.rmdir(webp_folder)
 
 def test_convert_images(setup_test_environment):
     png_folder, webp_folder = setup_test_environment
