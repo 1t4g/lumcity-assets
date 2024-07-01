@@ -17,6 +17,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Clean up /usr/lib/python3.10 (if needed)
+      run: echo "No cleanup needed for GitHub Actions environment."
+
     - name: Set up conda
       uses: conda-incubator/setup-miniconda@v2
       with:
