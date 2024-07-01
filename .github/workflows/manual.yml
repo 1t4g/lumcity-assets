@@ -1,0 +1,45 @@
+name: Image Conversion
+
+on:
+  workflow_dispatch:
+    inputs:
+      conversion_trigger:
+        description: 'Trigger for image conversion'
+        default: 'true'
+        required: true
+        type: string
+
+jobs:
+  convert-images:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up conda
+      uses: conda-incubator/setup-miniconda@v2
+      with:
+        auto-update-conda: true
+        python-version: '3.8'
+        environment-file: environment.yml
+        activate-environment: base
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+
+    - name: Run tests
+      run: pytest
+
+    - name: Convert images
+      run: python convert_images.py
+
+    - name: Commit and push changes
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add webp/
+        git commit -m "Add converted images"
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
