@@ -4,13 +4,10 @@ from PIL import Image
 def convert_images(png_folder, webp_folder):
     sizes = [(100, 100), (512, 512)]
     
-    # Create target directories if they don't exist
     for size in sizes:
         size_folder = os.path.join(webp_folder, f"{size[0]}px")
-        if not os.path.exists(size_folder):
-            os.makedirs(size_folder)
+        os.makedirs(size_folder, exist_ok=True)
     
-    # Process each PNG file
     for filename in os.listdir(png_folder):
         if filename.endswith(".png"):
             png_path = os.path.join(png_folder, filename)
@@ -18,10 +15,22 @@ def convert_images(png_folder, webp_folder):
             
             with Image.open(png_path) as img:
                 for size in sizes:
-                    img_resized = img.resize(size, Image.Resampling.LANCZOS)
-                    output_folder = os.path.join(webp_folder, f"{size[0]}px")
-                    output_path = os.path.join(output_folder, f"{base_name}{size[0]}px.webp")
-                    img_resized.save(output_path, "WEBP")
+                    width, height = size
+                    new_img = Image.new("RGBA", (width, height), (0, 0, 0, 0))
+                    aspect_ratio = img.width / img.height
+                    
+                    if img.width > img.height:
+                        new_height = int(width / aspect_ratio)
+                        resized_img = img.resize((width, new_height), Image.Resampling.LANCZOS)
+                        offset = (0, (height - new_height) // 2)
+                    else:
+                        new_width = int(height * aspect_ratio)
+                        resized_img = img.resize((new_width, height), Image.Resampling.LANCZOS)
+                        offset = ((width - new_width) // 2, 0)
+                    
+                    new_img.paste(resized_img, offset)
+                    output_path = os.path.join(size_folder, f"{base_name}{size[0]}px.webp")
+                    new_img.save(output_path, "WEBP")
                     print(f"Saved {output_path}")
 
 if __name__ == "__main__":
