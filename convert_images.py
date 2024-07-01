@@ -1,5 +1,5 @@
 import os
-from PIL import Image
+from Pillow import Image
 
 def convert_images(png_folder, webp_folder):
     sizes = [(100, 100), (512, 512)]
