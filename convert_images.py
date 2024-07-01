@@ -18,7 +18,7 @@ def convert_images(png_folder, webp_folder):
             
             with Image.open(png_path) as img:
                 for size in sizes:
-                    img_resized = img.resize(size, Image.ANTIALIAS)
+                    img_resized = img.resize(size, Image.Resampling.LANCZOS)
                     output_folder = os.path.join(webp_folder, f"{size[0]}px")
                     output_path = os.path.join(output_folder, f"{base_name}{size[0]}px.webp")
                     img_resized.save(output_path, "WEBP")
