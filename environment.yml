@@ -5,6 +5,6 @@ dependencies:
   - python=3.8
   - pip
   - pip:
-      - Pillow
+      - Pillow>=9.1.0
       - pytest
 
