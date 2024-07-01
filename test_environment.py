@@ -1,8 +1,8 @@
-import pytest
 import os
+import pytest
 import shutil
 from PIL import Image
-from convert_images import convert_images  # Замените на ваш реальный путь и имя модуля
+from convert_images import convert_images
 
 @pytest.fixture
 def setup_test_environment():
