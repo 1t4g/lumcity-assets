@@ -1,6 +1,6 @@
 import os
-import pytest
 import shutil
+import pytest
 from PIL import Image
 from convert_images import convert_images
 
